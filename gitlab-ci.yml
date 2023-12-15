@@ -7,6 +7,7 @@ deploy-code-job:
 	 # TODO: add link to github repository
     GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
   before_script:
+    - echo "The private ssh key is \:'$PRIVATE_SSH_KEY'"
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval `ssh-agent -s`
     - ssh-add <(echo "$PRIVATE_SSH_KEY")
@@ -15,7 +16,6 @@ deploy-code-job:
     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   script:
 		# TODO: push main to github
-    - echo "'$PRIVATE_SSH_KEY'"
     - git remote add github $GITHUB_URL # Voeg GitHub-repository als remote toe
     - git config --global user.email "yayoub@st.noorderpoort.nl" # Configureer de gebruikersinformatie
     - git config --global user.name "yamen22-dev"
