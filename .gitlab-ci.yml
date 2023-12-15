@@ -4,7 +4,7 @@ stages:
 build-code-job:
   stage: build
   variables :
-    f: "hello"
+    $PRIVATE_SSH_KEY: $PRIVATE_SSH_KEY
   image: node:18-buster
   script:
-  - echo "$f"
+  - echo "$PRIVATE_SSH_KEY"
