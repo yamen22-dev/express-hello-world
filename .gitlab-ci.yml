@@ -5,4 +5,5 @@ build-code-job:
   stage: build
   image: node:18-buster
   script:
+  - f = "soethign"
   - echo "$f"
