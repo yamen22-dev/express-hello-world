@@ -1,6 +1,8 @@
 stages:
   - build
   - deploy
+variables:
+  DOCKER_IMAGE_TAG: "my-node-app:latest"
 build-code-job:
   stage: build
   image: node:18-buster
