@@ -1,3 +1,5 @@
+stages: 
+  - deploy
 deploy-code-job:
   stage: deploy
   image: node:18-buster
