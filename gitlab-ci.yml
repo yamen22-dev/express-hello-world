@@ -7,7 +7,7 @@ deploy-code-job:
 	 # TODO: add link to github repository
     GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
   before_script:
-    - echo "The private ssh key is \:'$PRIVATE_SSH_KEY'"
+    - echo "The private ssh key is $PRIVATE_SSH_KEY'"
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval `ssh-agent -s`
     - ssh-add <(echo "$PRIVATE_SSH_KEY")
