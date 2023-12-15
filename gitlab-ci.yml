@@ -1,0 +1,42 @@
+stages:
+  - build
+  - deploy
+variables:
+  DOCKER_IMAGE_TAG: "my-node-app:latest"
+build-code-job:
+  stage: build
+  image: node:18-buster
+  script:
+  # TODO: build application
+  - echo "Building Docker image..."
+  - docker build -t $DOCKER_IMAGE_TAG .
+  - echo "Docker image built successfully."
+  after_script:
+    - docker images
+build-second-job:
+  stage: build
+  script:
+  - echo "Ik ben bij second build job."
+deploy-code-job:
+  stage: deploy
+  image: node:18-buster
+  variables:
+	 # TODO: add link to github repository
+    GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval `ssh-agent -s`
+    - ssh-add <(echo "$PRIVATE_SSH_KEY")
+    - mkdir -p ~/.ssh
+    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+  script:
+    # TODO: merge feature branch into main
+    - git checkout main
+    - git merge feature
+    - git push origin main
+		# TODO: push main to github
+    - git remote add github $GITHUB_URL # Voeg GitHub-repository als remote toe
+    - git config --global user.email "yayoub@st.noorderpoort.nl" # Configureer de gebruikersinformatie
+    - git config --global user.name "yamen22-dev"
+    - git push github $CI_COMMIT_REF_NAME # Push naar GitHub (vervang door de gewenste branch)
