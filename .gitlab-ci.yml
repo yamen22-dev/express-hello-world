@@ -7,15 +7,16 @@ deploy-code-job:
 # TODO: add link to github repository
     GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
   before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval `ssh-agent -s`
-    - ssh-add <(echo "$PRIVATE_SSH_KEY")
-    - mkdir -p ~/.ssh
-    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
-    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+    - echo "The private ssh key is $PRIVATE_SSH_KEY'"
+    # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    # - eval `ssh-agent -s`
+    # - ssh-add <(echo "$PRIVATE_SSH_KEY")
+    # - mkdir -p ~/.ssh
+    # - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
+    # - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   script:
 # TODO: push main to github
-    - git remote add github $GITHUB_URL
-    - git config --global user.email "yayoub@st.noorderpoort.nl" 
+    - git remote add github $GITHUB_URL # Voeg GitHub-repository als remote toe
+    - git config --global user.email "yayoub@st.noorderpoort.nl" # Configureer de gebruikersinformatie
     - git config --global user.name "yamen22-dev"
-    - git push github $CI_COMMIT_REF_NAME
+    - git push github $CI_COMMIT_REF_NAME # Push naar GitHub (vervang door de gewenste branch)
