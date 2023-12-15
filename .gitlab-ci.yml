@@ -3,7 +3,8 @@ stages:
   - deploy
 build-code-job:
   stage: build
+  variables :
+    f: "hello"
   image: node:18-buster
   script:
-  - f = "soethign"
   - echo "$f"
