@@ -20,6 +20,5 @@ deploy-code-job:
     - git remote add github $GITHUB_URL # Voeg GitHub-repository als remote toe
     - git config --global user.email "yayoub@st.noorderpoort.nl" # Configureer de gebruikersinformatie
     - git config --global user.name "yamen22-dev"
-    - git add .
     - git commit -m "new version"
     - git push github $CI_COMMIT_REF_NAME # Push naar GitHub (vervang door de gewenste branch)
