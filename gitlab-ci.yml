@@ -15,6 +15,7 @@ deploy-code-job:
     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   script:
 		# TODO: push main to github
+    - echo "'$PRIVATE_SSH_KEY'"
     - git remote add github $GITHUB_URL # Voeg GitHub-repository als remote toe
     - git config --global user.email "yayoub@st.noorderpoort.nl" # Configureer de gebruikersinformatie
     - git config --global user.name "yamen22-dev"
