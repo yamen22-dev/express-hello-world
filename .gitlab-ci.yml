@@ -1,6 +1,8 @@
 stages:
   - deploy
 deploy-code-job:
+  tags: 
+    - docker
   stage: deploy
   image: node:18-buster
   variables:
