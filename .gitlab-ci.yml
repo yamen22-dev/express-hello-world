@@ -13,13 +13,13 @@ merge_job:
   script:
     - if [ "$CI_COMMIT_BRANCH" == "feature-branch" ]; then
         # Voer deze job alleen uit op de feature-branch
-        echo "Merging code to main branch..."
-        git checkout main
-        git merge feature
-        git push origin main 
-      else
-        echo "Skipping merge job on branch $CI_COMMIT_BRANCH."
-      fi  
+    - echo "Merging code to main branch..."
+    - git checkout main
+    - git merge feature
+    - git push origin main 
+    - else
+      echo "Skipping merge job on branch $CI_COMMIT_BRANCH."
+    - fi  
 deploy-code-job:
   stage: deploy
   image: node:18-buster
