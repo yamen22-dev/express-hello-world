@@ -6,10 +6,7 @@ variables:
 build-code-job:
   stage: build
   image: node:18-buster
-  tags:
-    - docker
   script:
-  # TODO: build application
   - echo "Building Docker image..."
   - docker build -t $DOCKER_IMAGE_TAG .
   - echo "Docker image built successfully."
