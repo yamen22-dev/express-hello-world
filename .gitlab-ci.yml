@@ -1,9 +1,19 @@
-stages:
-  - build
-build-code-job:
-  stage: build
+deploy-code-job:
+  stage: deploy
   image: node:18-buster
+  variables:
+# TODO: add link to github repository
+    GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval `ssh-agent -s`
+    - ssh-add <(echo "$PRIVATE_SSH_KEY")
+    - mkdir -p ~/.ssh
+    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   script:
-  - echo "Building Docker image..."
-  - echo "Docker image built successfully."
-  - echo "'$PRIVATE_SSH_KEY'"
+# TODO: push main to github
+    - git remote add github $GITHUB_URL
+    - git config --global user.email "yayoub@st.noorderpoort.nl" 
+    - git config --global user.name "yamen22-dev"
+    - git push github $CI_COMMIT_REF_NAME
