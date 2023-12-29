@@ -14,7 +14,7 @@ merge-main-job:
     # TODO: merge feature branch into main
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval `ssh-agent -s`
-    - ssh-add <(echo "${$PRIVATE_SSH_KEY}" | base64 --decode | tr -d "\r")
+    - echo "$PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
