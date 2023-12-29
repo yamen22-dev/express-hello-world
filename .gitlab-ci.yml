@@ -15,5 +15,5 @@ merge-main-job:
     - git checkout main
     - git merge --no-ff origin/feature
     - git push origin main 
-     only:
+  only:
     - feature
