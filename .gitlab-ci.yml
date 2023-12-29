@@ -12,10 +12,12 @@ merge-main-job:
   image: node:18-buster
   script:
     # TODO: merge feature branch into main
-    - eval $(ssh-agent -s)
-    - ssh-add "$SSH_PRIVATE_KEY"
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval `ssh-agent -s`
+    - ssh-add <(echo "$PRIVATE_SSH_KEY")
     - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
+    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
+    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     - git config --global user.email "yayoub@st.noorderpoort.nl"
     - git config --global user.name "yamen22-dev"
     - git fetch
