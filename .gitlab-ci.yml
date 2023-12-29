@@ -17,6 +17,7 @@ merge-main-job:
     - git fetch
     - git checkout main
     - git merge origin/feature
+    - ssh-add -K ~/.ssh/$PRIVATE_SSH_KEY
     - git push -o ci-skip git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git HEAD:main
   only:
     - feature
