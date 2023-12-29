@@ -17,6 +17,6 @@ merge-main-job:
     - git fetch
     - git checkout main
     - git merge origin/feature
-    - git push origin main 
+    - git push -o ci-skip git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git HEAD:main
   only:
     - feature
