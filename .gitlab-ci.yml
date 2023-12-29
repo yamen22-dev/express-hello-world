@@ -12,7 +12,6 @@ merge-main-job:
   image: node:18-buster
   script:
     # TODO: merge feature branch into main
-    - ssh-add -K ~/.ssh/$PRIVATE_SSH_KEY
     - eval $(ssh-agent -s)
     - chmod 400 "$PRIVATE_SSH_KEY"
     - ssh-add "$SSH_PRIVATE_KEY"
