@@ -1,17 +1,21 @@
 stages:
-  # - build
-  - merge
-# build-code-job:
-#   stage: build
-#   image: node:18-buster
-#   script:
-#   - echo "Building Docker image..."
-#   - echo "Docker image built successfully."
-merge-main-job:
-  stage: merge
+- build
+- deploy
+
+build-code-job:
+  stage: build
   image: node:18-buster
   script:
-    # TODO: merge feature branch into main
+    - echo "Building Docker image..."
+    - echo "Docker image built successfully."
+
+deploy-code-job:
+  stage: deploy
+  image: node:18-buster
+  variables:
+	 # TODO: add link to github repository
+    GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
+  before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval `ssh-agent -s`
     - echo "$PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
@@ -21,11 +25,15 @@ merge-main-job:
     - git config --global user.email "yayoub@st.noorderpoort.nl"
     - git config --global user.name "yamen22-dev"
     - git remote set-url origin git@gitlab.com:ci-cd4341350/cdproject.git
+  script:
+    # TODO: merge feature branch into main
     - git fetch
     - git checkout origin/main
     - git pull origin main
     - git merge origin/feature
-    # - git commit -m "Merge feature into main"
     - git push origin HEAD:main
-
-    # - git merge --allow-unrelated-histories origin/main
+		# TODO: push main to github
+    - git remote add github $GITHUB_URL
+    - git push github $CI_COMMIT_REF_NAME
+  only: 
+    - branches
