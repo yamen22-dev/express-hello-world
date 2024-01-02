@@ -40,6 +40,6 @@ deploy-code-job:
     - git fetch github
     - git checkout github/main
     # - git pull github main
-    # - git add .
-    # - git commit -m "Merge branch 'origin/main' into jouw_branch"
+    - git add .
+    - git commit -m "Merge branch 'origin/main' into jouw_branch"
     - git push github HEAD:main
