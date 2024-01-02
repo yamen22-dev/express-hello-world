@@ -22,7 +22,6 @@ merge-main-job:
     - git config --global user.name "yamen22-dev"
     - git fetch
     - git checkout feature
-    - git pull origin main
     - git merge --allow-unrelated-histories main
     - git commit -m "Merge main into feature"
     - git push origin feature
