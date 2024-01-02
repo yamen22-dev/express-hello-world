@@ -26,5 +26,5 @@ merge-main-job:
     - git pull origin main
     - git merge origin/feature
     # - git commit -m "Merge feature into main"
-    - git push origin main
+    - git push
     # - git merge --allow-unrelated-histories origin/main
