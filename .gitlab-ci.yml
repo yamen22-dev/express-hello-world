@@ -20,6 +20,7 @@ merge-main-job:
     - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
     - git config --global user.email "yayoub@st.noorderpoort.nl"
     - git config --global user.name "yamen22-dev"
+    - git fetch
     - git checkout feature
     - git merge --allow-unrelated-histories origin/main
     - git commit -m "Merge main into feature"
