@@ -13,7 +13,7 @@ deploy-code-job:
   stage: deploy
   image: node:18-buster
   variables:
-	 # TODO: add link to github repository
+# TODO: add link to github repository
     GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -32,7 +32,7 @@ deploy-code-job:
     - git pull origin main
     - git merge origin/feature
     - git push origin HEAD:main
-		# TODO: push main to github
+# TODO: push main to github
     - git remote add github $GITHUB_URL
     - git push github $CI_COMMIT_REF_NAME
   only: 
