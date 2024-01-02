@@ -36,9 +36,5 @@ deploy-code-job:
     - git merge origin/feature
     - git push origin HEAD:main
 # TODO: push main to github
-    - git remote set-url origin $GITHUB_URL
-    - git fetch origin main
-    - git rebase origin/main
-    - git push origin HEAD:main
-  only: 
-    - branches
+    - git remote set-url github $GITHUB_URL
+    - git push github HEAD:main
