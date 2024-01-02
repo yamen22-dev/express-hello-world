@@ -31,10 +31,10 @@ deploy-code-job:
   script:
     # TODO: merge feature branch into main
     - git fetch
-    - git checkout main
-    - git pull
-    - git merge feature
-    - git push origin main
+    - git checkout origin/main
+    - git pull origin main
+    - git merge origin/feature
+    - git push origin HEAD:main
 # TODO: push main to github
     - git remote add github $GITHUB_URL
     - git fetch github
@@ -45,4 +45,4 @@ deploy-code-job:
     # - git pull github main
     - git add .
     - git commit -m "Merge branch 'origin/main' into jouw_branch"
-    - git push github HEAD:main
+    - git push github main
