@@ -21,7 +21,6 @@ merge-main-job:
     - git config --global user.email "yayoub@st.noorderpoort.nl"
     - git config --global user.name "yamen22-dev"
     - git fetch
-    - git checkout main
     - git merge origin/main
     - git push -o ci-skip git@$CI_SERVER_HOST:$CI_PROJECT_PATH.git HEAD:main
   only:
