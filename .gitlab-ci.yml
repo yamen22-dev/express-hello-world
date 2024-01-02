@@ -40,5 +40,5 @@ deploy-code-job:
     - git fetch github
     - git checkout github/main
     - git pull github main
-    - git merge --allow-unrelated-histories -X theirs origin/main
+    - git merge -X theirs --allow-unrelated-histories origin/main
     - git push github HEAD:main
