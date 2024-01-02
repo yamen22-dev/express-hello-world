@@ -32,7 +32,7 @@ deploy-code-job:
   script:
     # TODO: merge feature branch into main
     - git fetch
-    - git checkout origin/main
+    - git checkout main
     - git pull origin main
     - git merge -X theirs origin/feature
     - git push origin main
