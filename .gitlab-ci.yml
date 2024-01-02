@@ -41,4 +41,8 @@ deploy-code-job:
     - git checkout github/main
     - git pull github main
     - git merge -X theirs --allow-unrelated-histories origin/main
+    - git ls-files -u | cut -f 2 | xargs git checkout --theirs --
+    - git add .
+    - git merge --continue
+    - git commit -m "Merge branch 'origin/main' into jouw_branch"
     - git push github HEAD:main
