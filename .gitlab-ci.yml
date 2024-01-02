@@ -39,7 +39,7 @@ deploy-code-job:
     - git remote add github $GITHUB_URL
     - git fetch github
     - git checkout github/main
-    - git pull github main
-    - git add .
-    - git commit -m "Merge branch 'origin/main' into jouw_branch"
+    # - git pull github main
+    # - git add .
+    # - git commit -m "Merge branch 'origin/main' into jouw_branch"
     - git push github HEAD:main
