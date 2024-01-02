@@ -6,7 +6,7 @@ build-code-job:
   stage: build
   image: node:18-buster
   script:
-    - echo "Building Docker image..."
+    - echo "Hier dient een test te zijn, maar aangezien ik niet veel ervaring met node heb, zou ik alleen tekst printen"
     - echo "Docker image built successfully."
 
 deploy-code-job:
@@ -34,6 +34,7 @@ deploy-code-job:
     - git push origin HEAD:main
 # TODO: push main to github
     - git remote add github $GITHUB_URL
-    - git push github $CI_COMMIT_REF_NAME
+    - git fetch
+    - git push github origin HEAD:main
   only: 
     - branches
