@@ -24,4 +24,4 @@ merge-main-job:
     - git checkout feature
     - git merge --allow-unrelated-histories origin/main
     # - git commit -m "Merge main into feature"
-    - git push origin main
+    - git push main
