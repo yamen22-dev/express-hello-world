@@ -40,5 +40,5 @@ deploy-code-job:
     - git fetch github
     - git checkout github/main
     - git pull github main
-    - git merge github/feature
+    - git merge origin/main
     - git push github HEAD:main
