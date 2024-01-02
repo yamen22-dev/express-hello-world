@@ -21,6 +21,7 @@ merge-main-job:
     - git config --global user.email "yayoub@st.noorderpoort.nl"
     - git config --global user.name "yamen22-dev"
     - git remote set-url origin git@gitlab.com:ci-cd4341350/cdproject.git
+    - git fetch
     - git checkout origin/main
     - git pull origin main
     - git merge feature
