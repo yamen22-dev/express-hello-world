@@ -34,16 +34,13 @@ deploy-code-job:
     - git fetch
     - git checkout origin/main
     - git pull origin main
-    - git merge origin/feature
-    - git push origin HEAD:main
+    - git merge -X theirs origin/feature
+    - git push origin main
 # TODO: push main to github
     - git remote add github $GITHUB_URL
     - git fetch github
     - git add .
     - git commit -m "working"
     - git checkout github/main
-    - git merge -X --allow-unrelated-histories origin/main
-    # - git pull github main
-    - git add .
-    - git commit -m "Merge branch 'origin/main' into jouw_branch"
+    - git merge -X theirs origin/main
     - git push github main
