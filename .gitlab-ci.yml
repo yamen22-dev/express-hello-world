@@ -38,6 +38,6 @@ deploy-code-job:
 # TODO: push main to github
     - git remote set-url origin $GITHUB_URL
     - git fetch
-    - git push HEAD:main
+    - git push origin HEAD:main
   only: 
     - branches
