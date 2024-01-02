@@ -5,11 +5,13 @@ stages:
 first-build-code-job:
   stage: build
   image: node:18-buster
+  needs: []
   script:
     - echo "First test built successfully"
 second-build-code-job:
   stage: build
   image: node:18-buster
+  needs: []
   script:
     - echo "Second test built successfully."
 deploy-code-job:
