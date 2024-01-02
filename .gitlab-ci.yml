@@ -31,13 +31,15 @@ deploy-code-job:
   script:
     # TODO: merge feature branch into main
     - git fetch
-    - git checkout origin/main
-    - git pull origin main
-    - git merge origin/feature
-    - git push origin HEAD:main
+    - git checkout main
+    - git pull
+    - git merge feature
+    - git push origin main
 # TODO: push main to github
     - git remote add github $GITHUB_URL
     - git fetch github
+    - git add .
+    - git commit -m "working"
     - git checkout github/main
     - git merge -X --allow-unrelated-histories origin/main
     # - git pull github main
