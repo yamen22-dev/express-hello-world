@@ -1,17 +1,17 @@
 stages:
-- build
+# - build
 - deploy
 
-first-build-code-job:
-  stage: build
-  image: node:18-buster
-  script:
-    - echo "First test built successfully"
-second-build-code-job:
-  stage: build
-  image: node:18-buster
-  script:
-    - echo "Second test built successfully."
+# first-build-code-job:
+#   stage: build
+#   image: node:18-buster
+#   script:
+#     - echo "First test built successfully"
+# second-build-code-job:
+#   stage: build
+#   image: node:18-buster
+#   script:
+#     - echo "Second test built successfully."
 deploy-code-job:
   stage: deploy
   image: node:18-buster
@@ -40,6 +40,5 @@ deploy-code-job:
     - git fetch github
     - git checkout github/main
     - git pull github main
-    - git merge --allow-unrelated-histories origin/main
-    - git merge -X theirs origin/main
+    - git merge --allow-unrelated-histories -X theirs origin/main
     - git push github HEAD:main
