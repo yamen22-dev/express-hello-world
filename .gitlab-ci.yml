@@ -2,16 +2,16 @@ stages:
 # - build
 - deploy
 
-# first-build-code-job:
-#   stage: build
-#   image: node:18-buster
-#   script:
-#     - echo "First test built successfully"
-# second-build-code-job:
-#   stage: build
-#   image: node:18-buster
-#   script:
-#     - echo "Second test built successfully."
+first-build-code-job:
+  stage: build
+  image: node:18-buster
+  script:
+    - echo "First test built successfully"
+second-build-code-job:
+  stage: build
+  image: node:18-buster
+  script:
+    - echo "Second test built successfully."
 deploy-code-job:
   stage: deploy
   image: node:18-buster
