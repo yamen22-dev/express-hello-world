@@ -2,13 +2,16 @@ stages:
 - build
 - deploy
 
-build-code-job:
+first-build-code-job:
   stage: build
   image: node:18-buster
   script:
-    - echo "Hier dient een test te zijn, maar aangezien ik niet veel ervaring met node heb, zou ik alleen tekst printen"
-    - echo "Docker image built successfully."
-
+    - echo "First test built successfully"
+second-build-code-job:
+  stage: build
+  image: node:18-buster
+  script:
+    - echo "Second test built successfully."
 deploy-code-job:
   stage: deploy
   image: node:18-buster
@@ -35,6 +38,6 @@ deploy-code-job:
 # TODO: push main to github
     - git remote add github $GITHUB_URL
     - git fetch
-    - git push github origin HEAD:main
+    - git push github main
   only: 
     - branches
