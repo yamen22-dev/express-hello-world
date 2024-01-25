@@ -1,43 +1,21 @@
 stages:
-- build
-- deploy
+  - test
 
-first-build-code-job:
-  stage: build
-  image: node:18-buster
+variables:
+  GLOBAL_VARIABLE: "I am a global variable"
+
+run_job:
+  stage: test
   script:
-    - echo "First test built successfully"
-second-build-code-job:
-  stage: build
-  image: node:18-buster
-  script:
-    - echo "Second test built successfully."
-deploy-code-job:
-  stage: deploy
-  image: node:18-buster
-  variables:
-# TODO: add link to github repository
-    GITHUB_URL: "git@github.com:yamen22-dev/express-hello-world.git"
-  before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval `ssh-agent -s`
-    - echo "$PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
-    - ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-    - git config --global user.email "yayoub@st.noorderpoort.nl"
-    - git config --global user.name "yamen22-dev"
-    - git remote set-url origin git@gitlab.com:ci-cd4341350/cdproject.git
-  script:
-    # TODO: merge feature branch into main
-    - git fetch
-    - git checkout main
-    - git pull origin main
-    - git merge -X theirs origin/feature
-    - git push origin main
-# TODO: push main to github
-    - git remote add github $GITHUB_URL
-    - git fetch github
-    - git checkout github/main
-    - git merge -X theirs origin/main
-    - git push github main
+    - echo "Hello, this is a hardcoded string!"
+
+    - echo "Global Variable:GLOBAL_VARIABLE"
+
+    - LOCAL_VARIABLE="I am a local variable"
+
+    - echo "Local Variable:$LOCAL_VARIABLE"
+
+    - echo "Job Name:$CI_JOB_NAME"
+
+  tags:
+    - shared
